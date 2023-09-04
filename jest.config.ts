@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from '@jest/types';
+
+const config: Config.InitialOptions = {
   clearMocks: true,
   transform: {
     '^.+\\.js?$': 'babel-jest',
@@ -8,10 +10,11 @@ module.exports = {
   testPathIgnorePatterns: ['\\\\node_modules\\\\'],
   coverageDirectory: 'coverage',
   verbose: true,
-  testURL: 'http://localhost/',
   testEnvironment: 'node',
   modulePaths: ['./'],
   moduleNameMapper: {
-    '/^src/(.*)$/': '<rootDir>/src/$1',
+    '^src/(.*)$': '<rootDir>/src/$1',
   },
 };
+
+export default config;

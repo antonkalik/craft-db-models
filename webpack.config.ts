@@ -1,14 +1,14 @@
-const webpackNodeExternals = require('webpack-node-externals');
-const path = require('path');
+import webpackNodeExternals from 'webpack-node-externals';
+import path from 'path';
 
-module.exports = {
+export default {
   mode: process.env.NODE_ENV || 'development',
-  target: 'node',
+  target: 'node' as const,
   entry: './src/index.ts',
   watch: process.env.NODE_ENV === 'development',
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
