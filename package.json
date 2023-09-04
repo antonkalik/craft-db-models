@@ -5,9 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "NODE_ENV=production node dist/bundle.js",
-    "build": "NODE_ENV=production webpack --config webpack.config.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.ts",
     "dev": "cross-env NODE_ENV=development && npm-run-all -p dev:*",
-    "dev:build": "webpack --config webpack.config.js --watch",
+    "dev:build": "webpack --config webpack.config.ts --watch",
     "dev:start": "nodemon --watch dist --exec node dist/bundle.js",
     "test": "NODE_ENV=test jest --config ./jest.config.js",
     "lint": "eslint ./src -c .eslintrc.json"
