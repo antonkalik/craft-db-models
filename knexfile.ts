@@ -2,7 +2,7 @@ require('dotenv').config();
 require('ts-node/register');
 import type { Knex } from 'knex';
 
-const environments: string[] = ['development', 'staging', 'production'];
+const environments: string[] = ['development', 'test', 'production'];
 
 const connection: Knex.ConnectionConfig = {
   host: process.env.DB_HOST as string,
@@ -22,4 +22,15 @@ const commonConfig: Knex.Config = {
   }
 };
 
-export default Object.fromEntries(environments.map((env: string) => [env, commonConfig]));
+export default {
+  development: {
+    ...commonConfig,
+  },
+  test: {
+    ...commonConfig,
+    connection: {
+      ...connection,
+      database: process.env.DB_NAME_TEST as string,
+    }
+  }
+}

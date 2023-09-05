@@ -2,18 +2,22 @@ import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
   clearMocks: true,
-  transform: {
-    '^.+\\.js?$': 'babel-jest',
-    '^.+\\.ts?$': 'ts-jest',
-  },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$',
-  testPathIgnorePatterns: ['\\\\node_modules\\\\'],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
   coverageDirectory: 'coverage',
   verbose: true,
-  testEnvironment: 'node',
   modulePaths: ['./'],
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
+  },
+  testRegex: '.*\\.(spec|integration\\.spec)\\.ts$',
+  testPathIgnorePatterns: ['\\\\node_modules\\\\'],
   moduleNameMapper: {
+    '^root/(.*)$': '<rootDir>/$1',
     '^src/(.*)$': '<rootDir>/src/$1',
+  },
+  globals: {
+    'process.env.NODE_ENV': 'test',
   },
 };
 
